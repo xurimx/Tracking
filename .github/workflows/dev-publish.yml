@@ -24,9 +24,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal Tracking.sln
       
     - name: Publish migrator
-      run: dotnet publish --self-contained -o /home/publish/migrator/ -f net5.0 -r linux-x64 src/Tracking.Migration.Runner/Tracking.Migration.Runner.csproj 
+      run: dotnet publish --self-contained -o publish/migrator/ -f net5.0 -r linux-x64 src/Tracking.Migration.Runner/Tracking.Migration.Runner.csproj 
     - name: Publish the host
-      run: dotnet publish --self-contained -o /home/publish/host/ -f net5.0 -r linux-x64 src/Tracking.Host/Tracking.Host.csproj 
+      run: dotnet publish --self-contained -o publish/host/ -f net5.0 -r linux-x64 src/Tracking.Host/Tracking.Host.csproj 
       
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
