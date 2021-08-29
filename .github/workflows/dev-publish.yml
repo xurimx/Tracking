@@ -38,5 +38,5 @@ jobs:
       
     - name: Copying the migrator
       run: | 
-          rm /home/publish/migrator/appsettings.json
-          ls
+          ls -l
+          rm publish/migrator/appsettings.json
