@@ -2,7 +2,7 @@ name: Deploy to development server
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, experimental ]
 
   workflow_dispatch:
 
@@ -52,5 +52,6 @@ jobs:
     
     steps:
       - name: Copying the migrator
-      - run: rm publish\runner\appsettings.json
-      - run: ls
+        run: | 
+            rm publish\runner\appsettings.json
+            ls
