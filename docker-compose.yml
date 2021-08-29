@@ -1,0 +1,37 @@
+version: '3.4'
+
+volumes:
+  postgres_data: {}
+
+services:
+
+  tracking.host:
+    image: ${DOCKER_REGISTRY-}trackinghost
+    build:
+      context: .
+      dockerfile: src/Tracking.Host/Dockerfile
+    restart: on-failure
+    depends_on:
+      - postgres
+      - tracking.migration
+
+  tracking.migration:
+    image: ${DOCKER_REGISTRY-}trackingmigration
+    build:
+      context: .
+      dockerfile: src/Tracking.Migration.Runner/Dockerfile
+    restart: on-failure
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13.1-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+      POSTGRES_DB: tracking
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
