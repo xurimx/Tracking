@@ -37,7 +37,4 @@ jobs:
       run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       
     - name: Copying the migrator
-      run: | 
-          rm publish/migrator/appsettings.json
-          rsync -avz ./publish/migrator/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/tracking/migrator/
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:./home/tracking/migrator/Tracking.Migration.Runner
+      run: rsync -avz publish/migrator/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/tracking/migrator/
