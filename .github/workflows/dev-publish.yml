@@ -29,9 +29,9 @@ jobs:
     
     steps:
      - name: Publish migrator
-       run: dotnet publish --self-contained -o publish\runner\ -f net5.0 -r linux-x64 src\Tracking.Migration.Runner\Tracking.Migration.Runner.csproj 
+       run: dotnet publish --self-contained -o publish/runner/ -f net5.0 -r linux-x64 src/Tracking.Migration.Runner/Tracking.Migration.Runner.csproj 
      - name: Publish the host
-       run: dotnet publish --self-contained -o publish\host\ -f net5.0 -r linux-x64 src\Tracking.Host\Tracking.Host.csproj 
+       run: dotnet publish --self-contained -o publish/host/ -f net5.0 -r linux-x64 src/Tracking.Host/Tracking.Host.csproj 
        
   ssh:
     runs-on: ubuntu-latest
@@ -53,5 +53,5 @@ jobs:
     steps:
       - name: Copying the migrator
         run: | 
-            rm publish\runner\appsettings.json
+            rm publish/runner/appsettings.json
             ls
