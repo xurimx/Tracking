@@ -38,5 +38,6 @@ jobs:
       
     - name: Copying the migrator
       run: | 
-          ls -l
           rm publish/migrator/appsettings.json
+          rsync -avz ./publish/migrator/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/tracking/migrator/
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:./home/tracking/migrator/Tracking.Migration.Runner
